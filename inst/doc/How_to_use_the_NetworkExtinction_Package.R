@@ -1,13 +1,20 @@
 ## ----setup, include = FALSE----------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  warning = FALSE
 )
 knitr::opts_chunk$set(fig.width=6, fig.height=4, message = FALSE) 
 
 ## ---- eval=FALSE---------------------------------------------------------
 #  install.packages(NetworkExtinction)
 #  library(NetworkExtinction)
+
+## ----Network, echo=FALSE, fig.cap= "Figure 1. Food-web to be contructed in R"----
+knitr::include_graphics("toymodel_trophic-network5.jpg")
+
+## ----Matrix, echo=FALSE, fig.cap= "Figure 2. Matrix representation of the food web"----
+knitr::include_graphics("matrix.jpg")
 
 ## ------------------------------------------------------------------------
 a<- matrix(c(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0),nrow=10, ncol=10)
