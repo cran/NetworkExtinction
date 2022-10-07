@@ -4,13 +4,15 @@
 \name{Less_Connected}
 \alias{Less_Connected}
 \title{A sparsely connected foodweb}
-\format{a network}
+\format{
+a network
+}
 \usage{
 Less_Connected
 }
 \description{
-A trophic network with 30 species and 47 trophic interactions.
-This foodweb has a connectance of 0.03
+A network with 30 species and 47 interactions.
+This network has a connectance of 0.03
 }
 \seealso{
 \code{\link{More_Connected}}

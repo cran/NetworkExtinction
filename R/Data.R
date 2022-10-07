@@ -6,7 +6,15 @@
 #'
 "net"
 
-#' The foodweb of the intertidal zone in central chile
+#' A toymodel distance matrix
+#'
+#' A distance matrix used for demonstration of rewiring capabilities
+#'
+#' @format a distance matrix
+#'
+"dist"
+
+#' The binaryfoodweb of the intertidal zone in central chile
 #'
 #' A trophic network with 107 species present in the  intertidal zone of central Chile.
 #' The food web was reconstructed from the Kefi et al. 2015
@@ -14,6 +22,23 @@
 #' @format a network
 #' @references Kefi, Sonia, Eric L. Berlow, Evie A. Wieters, Lucas N. Joppa, Spencer A. Wood, Ulrich Brose, and Sergio A. Navarrete. "Network structure beyond food webs: mapping non trophic and trophic interactions on Chilean rocky shores." Ecology 96, no. 1 (2015.
 "chilean_intertidal"
+
+#' The weighted foodweb of the intertidal zone in central chile
+#'
+#' A trophic network with 107 species present in the  intertidal zone of central Chile.
+#' The food web was reconstructed from the Kefi et al. 2015
+#
+#' @format a network
+#' @references Kefi, Sonia, Eric L. Berlow, Evie A. Wieters, Lucas N. Joppa, Spencer A. Wood, Ulrich Brose, and Sergio A. Navarrete. "Network structure beyond food webs: mapping non trophic and trophic interactions on Chilean rocky shores." Ecology 96, no. 1 (2015.
+"chilean_weighted"
+
+#' The potential foodweb of the intertidal zone in central chile
+#'
+#' A trophic network with 107 species present in the  intertidal zone of central Chile.
+#' The food web was reconstructed from the Kefi et al. 2015
+#
+#' @format a network
+"chilean_potential"
 
 #' A densely connected foodweb
 #'
@@ -26,8 +51,8 @@
 
 #' A sparsely connected foodweb
 #'
-#' A trophic network with 30 species and 47 trophic interactions.
-#' This foodweb has a connectance of 0.03
+#' A network with 30 species and 47 interactions.
+#' This network has a connectance of 0.03
 
 
 #' @format a network
