@@ -6,11 +6,16 @@
 #' @noRd
 
 .DataInit <- function(x){
-  if(is(x) == "network"){
+  if(is(x)[1] == "network"){
     x
   }
-  if(is(x) == "matrix"){
-    x <- as.network(x, loops = TRUE)
+  if(is(x)[1] == "matrix"){
+    x <- network::as.network(x,
+                             matrix.type='adjacency',
+                             # loops = TRUE,
+                             directed = TRUE,
+                             ignore.eval = FALSE,
+                             names.eval = 'weight')
   }
   return(x)
 }
