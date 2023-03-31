@@ -18,7 +18,8 @@ RandomExtinctions(
   Rewiring = FALSE,
   RewiringDist = NULL,
   RewiringProb = 0.5,
-  verbose = TRUE
+  verbose = TRUE,
+  forceFULL = FALSE
 )
 }
 \arguments{
@@ -53,6 +54,8 @@ sequentially}
 \item{RewiringProb}{a numeric which identifies the threshold at which to assume rewiring potential is met.}
 
 \item{verbose}{Logical. Whether to report on function progress or not.}
+
+\item{forceFULL}{Logical. Whether to continue removal of nodes after initial order has been depleted. This will force the simulations to execute extinctions and check for secondary extinctions/new links until the network does not change anylonger.}
 }
 \value{
 exports list containing a data frame with the characteristics of the network after every extinction, a network object containing the final network, and a graph with the mean and 95percent interval. The resulting data frame contains 11 columns that incorporate the topological index, the secondary extinctions, predation release, and total extinctions of the network in each primary extinction.
@@ -61,6 +64,18 @@ exports list containing a data frame with the characteristics of the network aft
 Generates a null model by generating random extinction histories and calculating the mean and standard deviation of the accumulated secondary extinctions developed by making n random extinction histories.
 }
 \details{
+"Note: When using the pre-defined order of nodes for primary
+removals option in the random extinction scenario, it is possible
+that some of the species in the predefined order may be lost as
+secondary extinctions. As such, they should not be counted as
+primary removals. For example, if a network has five species {A,B,
+,D,E} and a pre-defined "random" order of removal {C,A,B,E,D} with
+removal of C causing the additional loss of A and removal of B
+causing the additional loss of E and D, only two primary removals
+(C and B) would be required for total network collapse, even though
+the algorithm would terminate at the third element of the removal
+vector, i.e., {C,A,B}."
+
 When NetworkType = Trophic, secondary extinctions only occur for any predator, but not producers. If NetworkType = Mutualistic, secondary extinctions occur for all species in the network.
 
 When clust.method = cluster_edge_betweenness computes the network modularity using cluster_edge_betweenness methods from igraph to detect communities

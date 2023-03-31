@@ -14,16 +14,17 @@ SimulateExtinctions(
   Rewiring = FALSE,
   RewiringDist,
   RewiringProb = 0.5,
-  verbose = TRUE
+  verbose = TRUE,
+  forceFULL = FALSE
 )
 }
 \arguments{
 \item{Network}{a network representation as a an adjacency matrix, edgelist,
 or a network object}
 
-\item{Method}{a character with the options Mostconnected and Ordered}
+\item{Method}{a character with the options Mostconnected, Leastconnected and Ordered}
 
-\item{Order}{a numeric vector indexing order of primary extinctions. For Method = Mostconnected Order must be NULL. If Order is not NULL, Method is internally forced to be Ordered.}
+\item{Order}{a numeric vector indexing order of primary extinctions. For Method = Mostconnected or Leastconnected Order must be NULL. If Order is not NULL, Method is internally forced to be Ordered.}
 
 \item{NetworkType}{a character with the options Trophic and Mutualistic - is used to calculate secondary extinctions.}
 
@@ -39,6 +40,8 @@ cluster_label_prop or cluster_infomap, defaults to cluster_infomap}
 \item{RewiringProb}{a numeric which identifies the threshold at which to assume rewiring potential is met.}
 
 \item{verbose}{Logical. Whether to report on function progress or not.}
+
+\item{forceFULL}{Logical. Whether to continue removal of nodes after initial order has been depleted. This will force the simulations to execute extinctions and check for secondary extinctions/new links until the network does not change anylonger.}
 }
 \value{
 exports list containing a data frame with the characteristics of the network after every extinction and a network object containing the final network. The resulting data frame contains 11 columns that incorporate the topological index, the secondary extinctions, predation release, and total extinctions of the network in each primary extinction.
@@ -49,7 +52,7 @@ extinctions, species-dependency on existing interaction strength, and rewiring p
 and checking for secondary extinctions.
 }
 \details{
-When method is Mostconnected, the function takes the network and calculates which node is the most connected of the network, using total degree. Then remove the most connected node, and calculates the the topological indexes of the network and the number of secondary extinctions. This process is repeated until the entire network has gone extinct.
+When method is Mostconnected, the function takes the network and calculates which node is the most connected of the network, using total degree. Then remove the most connected node, and calculates the the topological indexes of the network and the number of secondary extinctions. This process is repeated until the entire network has gone extinct. When method is Leastconnected, this process prioritises nodes of lowest degree.
 
 When method is Ordered, it takes a network, and extinguishes nodes using a custom order, then it calculates the secondary extinctions and plots the accumulated secondary extinctions.
 
@@ -98,6 +101,16 @@ SimulateExtinctions(Network = net, Order = c(2,8), IS = 0.3,
 Rewiring = function(x){x}, # no changes to the RewiringDist object means
 RewiringDist = dist, RewiringProb = 0.2,
 Method = "Ordered", clust.method = "cluster_infomap")
+
+## mutualistic network example
+data(mutual)
+# tallying of first-order secondary extinctions only
+SimulateExtinctions(Network = mutual, Order = 3, NetworkType = "Mutualistic",
+IS = 1, forceFULL = FALSE)
+# tallying of all secondary extinctions until network contains no
+#more potential secondary extinctions
+SimulateExtinctions(Network = mutual, Order = 3, NetworkType = "Mutualistic",
+IS = 1, forceFULL = TRUE)
 }
 \author{
 Derek Corcoran <derek.corcoran.barrios@gmail.com>
